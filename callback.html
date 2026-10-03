@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Authorization</title><style>body{font:16px/1.6 system-ui,sans-serif;max-width:760px;margin:40px auto;padding:0 16px;color:#222;background:#fff}h1{color:#e8505b}code{background:#f3f3f3;padding:2px 6px;border-radius:4px;word-break:break-all}</style></head><body>
+<h1>Authorization</h1>
+<div id="out">Reading the response…</div>
+<script>
+var p = new URLSearchParams(location.search), o = document.getElementById("out");
+if (p.get("code")) {
+  o.innerHTML = "<p>Authorized. Copy this code back into the terminal:</p><p><code id='c'></code></p>";
+  document.getElementById("c").textContent = p.get("code");
+} else if (p.get("error")) {
+  o.textContent = "Authorization failed: " + p.get("error") + " " + (p.get("error_description") || "");
+} else {
+  o.textContent = "No authorization code in this URL.";
+}
+</script>
+<hr><p><a href="index.html">Home</a> · <a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a></p></body></html>
